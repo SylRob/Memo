@@ -1,0 +1,27 @@
+@keyframes rotatePushRight {
+    0% {
+    }
+    100% {
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+}
+
+@keyframes rotatePushLeft {
+    0% {
+    }
+    100% {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+}
+
+.page-rotatePushRight.ng-enter {
+    animation: 0.8s ease 0s normal both 1 rotatePushRight;
+    transform-origin: 100% 50% 0;
+}
+
+.page-rotatePushLeft.ng-enter {
+    animation: 0.8s ease 0s normal both 1 rotatePushLeft;
+    transform-origin: 0 50% 0;
+}
