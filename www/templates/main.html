@@ -5,7 +5,7 @@
     
     <ul ng-repeat="listData in listsData">
       
-      <li>{{listData.infos.name}} <a href="" ng-click="toRemove(listData.infos.id)">X</a> <a href="" ng-click="toEdit(listData.infos.id)">E</a></li>
+      <li>{{listData.infos.name}} <a href="" ng-click="toRemove(listData.infos.id, listData.infos.name)">X</a> <a href="" ng-click="toEdit(listData.infos.id)">E</a> <a href="" ng-click="toElemList(listData.infos.id)">Elements List</a></li>
       
     </ul>
     

@@ -56,7 +56,16 @@ var DBLocal = (function() {
             alert('ERROR\r\nan error append when we try to save');
             throw new Error('cannot store because the format of the data is not correct');
         }
+        
+    }
     
+    DBLocal.prototype.getUniqueId = function() {
+        var delim = "-";
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        return (S4() + S4() + delim + S4() + delim + S4() + delim + S4() + delim + S4() + S4() + S4());
+        
     }
     
     return DBLocal;

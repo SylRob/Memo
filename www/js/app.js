@@ -42,13 +42,17 @@ var cont = angular
             templateUrl: 'templates/main.html',
             controller: 'HomeCtrl'
         }).
-        when('/list/:numList/elem/:numElem', {
-            templateUrl: 'templates/aElem.html',
-            controller: 'aElemCtrl'
-        }).
         when('/list/:numList', {
             templateUrl: 'templates/aList.html',
             controller: 'aListCtrl'
+        }).
+        when('/list/:numList/elem', {
+            templateUrl: 'templates/allElems.html',
+            controller: 'DetailsCtrl'
+        }).
+        when('/list/:numList/elem/:numElem', {
+            templateUrl: 'templates/aElem.html',
+            controller: 'aElemCtrl'
         }).
         otherwise({
             redirectTo: '/mainList'

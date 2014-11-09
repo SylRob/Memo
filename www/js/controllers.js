@@ -20,7 +20,20 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
         $location.path( '/list/'+listId );
     }
     
-    $scope.toRemove = function( listId ) {
+    $scope.toRemove = function( listId, listName ) {
+        
+        if( window.confirm("Are you sure you want to delete "+listName+" ?") ) {
+            
+            var listToDelete = new List(listId, DB);
+            listToDelete.erase();
+            data = DB.getElem();
+            $scope.listsData = data;
+        }
+        
+    }
+    
+    $scope.toElemList = function( listId ) {
+        
         
     }
 
@@ -58,10 +71,10 @@ var aListCtrl = function( $scope, $routeParams, $location, DB ) {
         myNewListObj.from = $scope.from;
         myNewListObj.to = $scope.to;
         myNewListObj.done = false;
-         myNewListObj.nbrOfElements = 0;
+        myNewListObj.nbrOfElements = 0;
         myNewListObj.elem = {};
         
-        myNewListObj.id = $scope.edit ? listNumber : DB.numberOfItems+1;
+        myNewListObj.id = $scope.edit ? listNumber : DB.getUniqueId();
         
         listToSave.setInfos( myNewListObj );
         
@@ -72,6 +85,10 @@ var aListCtrl = function( $scope, $routeParams, $location, DB ) {
         toElemPage ? $location.path( '/list/'+listId+'/elem/newElem') : $location.path('/mainList' );
         
     }
+}
+
+var DetailsCtrl = function( $scope, $routeParams, $location, DB ) {
+    
 }
 
 var aElemCtrl = function( $scope, $routeParams, $location, DB ) {

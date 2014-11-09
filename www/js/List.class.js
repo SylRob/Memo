@@ -10,9 +10,10 @@ var List = (function() {
         this.done = false;
         this.elems = {};
         
-        if ( !isNaN( id ) ) this.getFromId( id );
+        if ( undefined != id && '' != id ) this.getFromId( id );
         
     }
+    
     
     List.prototype.init = function() {
         var _this = this;
@@ -41,6 +42,7 @@ var List = (function() {
         
     }
     
+    
     List.prototype.setElems = function( data ) {
                 
         this.infos.nbrOfElements = Object.keys(data).length;
@@ -49,12 +51,12 @@ var List = (function() {
         
     }
     
+    
     List.prototype.setDone = function( data ) {
         
         this.done = data;
         
     }
-    
     
     
     List.prototype.getFromId = function( id ) {
@@ -67,7 +69,6 @@ var List = (function() {
             if ( id == lists[arrID].infos.id ) {
                 
                 var myList = lists[arrID];
-                
                 _this.setInfos( myList.infos );
                 _this.setConfig( myList.config );
                 _this.setElems( myList.elems );
@@ -80,14 +81,28 @@ var List = (function() {
         
     }
     
+    
     List.prototype.erase = function() {
         var _this = this;
         
-        if ( isNaN( this.infos.id ) ) return false;
+        if ( undefined == this.infos.id || '' == this.infos.id ) return false;
         
+        var lists = this.DB.getElem();
+        var toSave = [];
         
+        for( var arrID in lists ) {
+            
+            if ( _this.infos.id != lists[arrID].infos.id ) {
+                    
+                toSave.push( lists[arrID] );
+                
+            }
+        }
+        
+        this.DB.storeElem( toSave );
         
     }
+    
     
     List.prototype.save = function(update) {
         var _this = this;
@@ -118,10 +133,6 @@ var List = (function() {
             
             
         }
-        
-        this.DB.getElem();
-        
-        
         
     }
     
