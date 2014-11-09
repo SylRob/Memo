@@ -64,6 +64,8 @@ var cont = angular
 
 .controller('aListCtrl', ['$scope', '$routeParams', '$location', 'DB', aListCtrl ])
 
+.controller('DetailsCtrl', ['$scope', '$routeParams', '$location', 'DB', DetailsCtrl ])
+
 .controller('aElemCtrl', ['$scope', '$routeParams', '$location', 'DB', aElemCtrl ]);
 
 

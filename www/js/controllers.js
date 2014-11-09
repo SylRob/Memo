@@ -34,7 +34,7 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
     
     $scope.toElemList = function( listId ) {
         
-        
+        $location.path( '/list/'+listId+'/elem' );
     }
 
 }
@@ -87,10 +87,71 @@ var aListCtrl = function( $scope, $routeParams, $location, DB ) {
     }
 }
 
+
 var DetailsCtrl = function( $scope, $routeParams, $location, DB ) {
+    
+    var listId = $routeParams.numList;
+    
+    var theList = new List( listId, DB );
+    
+    $scope.elemsData = theList.elems;
+    
+    $scope.goToCreateElem = function() {
+        $location.path('/list/'+listId+'/elem/newElem');
+    }
+    
+    $scope.toEdit = function( elemId ) {
+        $location.path( '/list/'+listId+'/elem/'+elemId );
+    }
+    
+    $scope.toRemove = function( elemId, elemName ) {
+        
+        if( window.confirm("Are you sure you want to delete "+elemName+" ?") ) {
+            
+            var listToDelete = new List(elemId, theList);
+            
+        }
+        
+    }
+    
     
 }
 
 var aElemCtrl = function( $scope, $routeParams, $location, DB ) {
+    
+    var listId = $routeParams.numList;
+    var elemId = $routeParams.numElem;
+    
+    var theList = new List( listId, DB );
+    
+    $scope.edit = elemId != "newElem" ? true : false;
+    
+    if ($scope.edit) {
+        
+        var elemToEdit = new Elem( elemId, theList );
+        
+        
+    }
+    
+    
+    $scope.elemSave = function(toElemPage) {
+        
+        var elemToSave = new Elem( false, theList );
+        
+        var myNewElemObj = {};
+        
+        myNewElemObj.name = $scope.name;
+        myNewElemObj.description = $scope.description;
+        myNewElemObj.done = false;
+        
+        myNewElemObj.id = $scope.edit ? listNumber : DB.getUniqueId();
+        
+        elemToSave.setInfos( myNewElemObj );
+        
+        elemToSave.save( $scope.edit ? true : false );
+        
+        $location.path('../');
+        
+    }
     
 }

@@ -1,10 +1,17 @@
 
 var Elem = (function() {
     
-    function Elem( id, DB ) {
+    function Elem( id, List ) {
         
+        this.id = id;
+        this.List = List;
+        this.name;
+        this.description;
+        this.done;
         
         if ( undefined != id && '' != id ) this.getFromId( id );
+        
+        
         
     }
     
@@ -17,17 +24,9 @@ var Elem = (function() {
     
     Elem.prototype.setInfos = function( data ) {
         
-        
-    }
-    
-    
-    Elem.prototype.setConfig = function( data ) {
-        
-    }
-    
-    
-    Elem.prototype.setElems = function( data ) {
-        
+        this.id = data.id;
+        this.name = data.name;
+        this.description = data.description;
     }
     
     
@@ -70,8 +69,13 @@ var Elem = (function() {
         
         var myObj = {};
         
+        myObj.id = this.id;
+        myObj.name = this.name;
+        myObj.description = this.description;
+        
+        
         if (!update) {
-            //this.List.addElem( myObj );
+            this.List.addElem( myObj );
         } else {
             /*
             var elems = this.List.getElems();
