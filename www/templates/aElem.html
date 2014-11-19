@@ -1,10 +1,17 @@
-<h1>AN ELEM</h1>
+<h1>AN ELEM FOR LIST {{ListInfo.name}}</h1>
 
 <div id="newList">
     
     <p><label for="elemName">Name</label><input type="text" id="elemName" name="elemName" ng-model="name" value="" /></p>
     
-    <p><label for="description">Description</label><input type="text" id="description" name="description"  ng-model="description" value="" /></p>
+    <p><label for="memo">Memo</label><input type="text" id="memo" name="memo"  ng-model="memo" value="" /></p>
+    
+    <p>
+        <label for="from">From</label>
+        <input type="text" id="from" name="from"  ng-model="from" value="" />
+        <label for="to">To</label>
+        <input type="text" id="to" name="to"  ng-model="to" value="" />
+    </p>
     
     <div ng-if="edit == true">
         <button ng-click="elemSave(false)">Update</button>

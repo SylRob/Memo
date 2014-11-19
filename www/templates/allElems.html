@@ -1,11 +1,11 @@
-<h1>Memo</h1>
+<h1>{{ListInfo.name}} elem List</h1></h1>
         
 <div id="elemsBlock">
     <!--Body content-->   
     
-    <ul ng-repeat="elemsData in elemssData">
+    <ul ng-repeat="elemData in elemsData">
       
-      <li>{{elemsData.infos.name}} <a href="" ng-click="toRemove(elemsData.infos.id, elemsData.infos.name)">X</a> <a href="" ng-click="toEdit(elemsData.infos.id)">E</a></li>
+      <li><input type="checkbox" ng-click="setDone(elemData.infos.id)" ng-model="elemData.done" />{{elemData.infos.name}} <a href="" ng-click="toRemove(elemData.infos.id, elemData.infos.name)">X</a> <a href="" ng-click="toEdit(elemData.infos.id)">E</a></li>
       
     </ul>
     

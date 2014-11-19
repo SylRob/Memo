@@ -7,8 +7,7 @@ var List = (function() {
         
         this.config = {};
         this.infos = {};
-        this.done = false;
-        this.elems = {};
+        this.elems = [];
         
         if ( undefined != id && '' != id ) this.getFromId( id );
         
@@ -27,8 +26,6 @@ var List = (function() {
         this.infos.id = data.id;
         this.infos.name = data.name;
         this.infos.description = data.description;
-        this.infos.from = data.from;
-        this.infos.to = data.to;
         this.infos.nbrOfElements = data.nbrOfElements;
         
     }
@@ -37,7 +34,6 @@ var List = (function() {
     List.prototype.setConfig = function( data ) {
         
         this.config.notify = data.notify;
-        this.config.every = data.every;
         this.config.type = data.type;
         
     }
@@ -48,13 +44,6 @@ var List = (function() {
         this.infos.nbrOfElements = Object.keys(data).length;
         
         this.elems = data;
-        
-    }
-    
-    
-    List.prototype.setDone = function( data ) {
-        
-        this.done = data;
         
     }
     
@@ -133,6 +122,13 @@ var List = (function() {
             
             
         }
+        
+    }
+    
+    List.prototype.addElem = function(data) {
+        
+        this.elems.push(data);
+        this.save(true);
         
     }
     
