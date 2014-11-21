@@ -9,6 +9,8 @@ var List = (function() {
         this.infos = {};
         this.elems = [];
         
+        this.type = ['shopping', 'todo', 'recipe'];
+        
         if ( undefined != id && '' != id ) this.getFromId( id );
         
     }
@@ -82,7 +84,7 @@ var List = (function() {
         for( var arrID in lists ) {
             
             if ( _this.infos.id != lists[arrID].infos.id ) {
-                    
+                
                 toSave.push( lists[arrID] );
                 
             }
