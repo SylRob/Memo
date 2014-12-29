@@ -25,7 +25,7 @@ document.addEventListener('deviceready', function() {
 }, false);
 
 
-var cont = angular
+var app = angular
 .module( 'Memo', ['ngRoute', 'ngAnimate'] )
 
 .factory('DB', function() {

@@ -37,9 +37,10 @@ body {
 
 #wraper {
     background-color: #397EE8;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     position: relative;
+    overflow: auto;
 }
 
 .secondColor {
@@ -57,11 +58,49 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
+    width: 100%;
 }
 
+#sideMenu {
+    width: 11%;
+    position: relative;
+    z-index: 15;
+    padding: 2%;
+    overflow: hidden;
+    height: 8%;
+    background-color: #2b597a;
+}
 
+#menuWrapper {
+    display: table;
+    width: 80%;
+    height: 96vh;
+    margin: 0 auto;
+    cursor: pointer;
+}
 
+#menuWrapper > div:first-child {
+    display: table-row;
+    height: 6%;
+}
 
+#bottomPos {
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+#bottomPos > div {
+    margin-top: 25%;
+}
+
+#sideMenu  div img {
+    width: 100%;
+}
+
+#btn_back {
+    margin-bottom: 150%;
+}
 
 
 
