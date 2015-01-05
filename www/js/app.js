@@ -34,7 +34,6 @@ var app = angular
     return new DBLocal("memoLists");
 
 })
-
 .config( ['$routeProvider',
     function($routeProvider) {
         $routeProvider.

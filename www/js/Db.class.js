@@ -1,4 +1,3 @@
-
 var DBLocal = (function() {
     
     function DBLocal(myStorage) {

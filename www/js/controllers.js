@@ -1,6 +1,6 @@
 
 var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {  
-    
+      
     var data = DB.getElem();
     
     //is the user a new user ?
@@ -10,11 +10,19 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
         
     }
     
+    var actionList = ['edit', 'add', 'remove'];
+    
     $scope.listsData = data;
     
     $scope.goToCreateList = function() {
-        $location.path('/list/newList');
+        $location.path( '/list/newList' );
     }
+    
+    $scope.selectElem = function( id, name ) {
+        $scope.animElem( id, name );
+        $scope.menuToggle( actionList );
+    }
+    
     
     $scope.toEdit = function( listId ) {
         $location.path( '/list/'+listId );
@@ -22,7 +30,7 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
     
     $scope.toRemove = function( listId, listName ) {
         
-        if( window.confirm("Are you sure you want to delete "+listName+" ?") ) {
+        if( window.confirm( "Are you sure you want to delete "+listName+" ?" ) ) {
             
             var listToDelete = new List(listId, DB);
             listToDelete.erase();
@@ -97,7 +105,7 @@ var DetailsCtrl = function( $scope, $routeParams, $location, DB ) {
     $scope.elemsData = theList.elems;
     
     $scope.goToCreateElem = function() {
-        $location.path('/list/'+listId+'/elem/newElem');
+        $location.path( '/list/'+listId+'/elem/newElem' );
     }
     
     $scope.toEdit = function( elemId ) {
@@ -106,9 +114,9 @@ var DetailsCtrl = function( $scope, $routeParams, $location, DB ) {
     
     $scope.toRemove = function( elemId, elemName ) {
         
-        if( window.confirm("Are you sure you want to delete "+elemName+" ?") ) {
+        if( window.confirm( "Are you sure you want to delete "+elemName+" ?" ) ) {
             
-            var elemToDelete = new Elem(elemId, theList);
+            var elemToDelete = new Elem( elemId, theList );
             elemToDelete.erase();
             theList = new List( listId, DB );
             $scope.ListInfo = theList.infos;
@@ -119,7 +127,7 @@ var DetailsCtrl = function( $scope, $routeParams, $location, DB ) {
     
     $scope.setDone = function( elemId ) {
         
-        var e = new Elem(elemId, theList);
+        var e = new Elem( elemId, theList );
         //e.setDone();
         e.save( true );
         theList = new List( listId, DB );
@@ -141,7 +149,7 @@ var aElemCtrl = function( $scope, $routeParams, $location, DB ) {
     $scope.ListInfo = theList.infos;
     $scope.edit = elemId != "newElem" ? true : false;
     
-    if ($scope.edit) {
+    if( $scope.edit ) {
         
         var elemToEdit = new Elem( elemId, theList );
         
