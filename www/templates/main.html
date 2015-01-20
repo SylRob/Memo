@@ -3,18 +3,19 @@
 <div id="listBlock">
     <!--Body content-->
     
-    <button ng-click="goToCreateList()">Create a new list!</button>
+    <button ng-click="goToCreateElem()">Create a new list!</button>
     
       <ul>
         
-        <li ng-repeat="listData in listsData">
-          <div class="elem" ng-click="selectElem( listData.infos.id, listData.infos.name )" select-item>
+        <li ng-repeat="listData in listsData" select-items>
+          <div class="elem" ng-click="selectElem( listData.infos.id, listData.infos.name )">
             {{listData.infos.name}}
             <!--a href="" ng-selectedElemId="{listData.infos.id}" ng-selectedElemname="{listData.infos.name}" ng-click="toRemove(listData.infos.id, listData.infos.name)">X</a> <a href="" ng-click="toEdit(listData.infos.id)">E</a-->
             <div class="hide itemDesc">
               {{listData.infos.description}}
             </div>
-            </div><a href="" ng-click="toElemList(listData.infos.id)"><img src="img/ico_whiteArrow.svg" alt="" /></a>
+            </div>
+          <a href="" ng-click="toElemList(listData.infos.id)"><img src="img/ico_whiteArrow.svg" alt="" /></a>
         </li>
         
       </ul>

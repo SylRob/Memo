@@ -16,7 +16,7 @@ app.directive( 'menuDirective', function () {
         }).resize();
         
         
-        scope.menuToggle = function( elems ) {
+        scope.menuToggle = function( elems, id, name, listFunc ) {
             
             if( !scope.menuActive ) {
                 $('#bottomPos > div[id^="btn_"]').hide();
@@ -28,19 +28,26 @@ app.directive( 'menuDirective', function () {
             
             var speed = 300;
             
-            reasign();
-            
             $("#sideMenu").animate({
                 height  : h
             }, speed);
             
+            
+            if ( id !== undefined ) {
+                scope.menuEdit = function() {
+                    listFunc.toEdit( id );
+                }
+                scope.menuAdd = function() {
+                    listFunc.toElemList( id );
+                }
+                scope.menuRemove = function() {
+                    listFunc.toRemove( id );
+                }
+            }
+            
+            
         } //scope.menuToggle
         
-        
-        scope.menuEdit = function() {
-            //$scope.toEdit( scope.selectedId );
-            console.log(scope.selectedId);
-        }
         
         function reasign() {
             
@@ -56,31 +63,30 @@ app.directive( 'menuDirective', function () {
     }
 })
 
-.directive( 'selectItem', function () {
+.directive( 'selectItems', function () {
     
     function link( scope, element, attrs ) {
         
-        scope.animElem = function( id, name ) {
+        scope.listActivate = false;
+        
+        scope.$parent.selectItem = function( id, name ) {
             
-            if ( !scope.activate ) {
+            if ( !scope.listActivate ) {
                 
-                scope.listActivate = !scope.listActivate;
+                
                 
                 
             }
             
-        }
-        
+            scope.listActivate = !scope.listActivate;
+            
+        }        
         
     }
 
     return {
-        scope: {
-            toEdit : "&"
-        },
         link: link
     };
-    
     
     
 });

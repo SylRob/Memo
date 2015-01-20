@@ -10,25 +10,20 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
         
     }
     
+    var listFunc = {};
     var actionList = ['edit', 'add', 'remove'];
     
     $scope.listsData = data;
     
-    $scope.goToCreateList = function() {
+    $scope.goToCreateElem = listFunc.goToCreateElem = function() {
         $location.path( '/list/newList' );
     }
     
-    $scope.selectElem = function( id, name ) {
-        $scope.animElem( id, name );
-        $scope.menuToggle( actionList );
-    }
-    
-    
-    $scope.toEdit = function( listId ) {
+    listFunc.toEdit = function( listId ) {
         $location.path( '/list/'+listId );
     }
     
-    $scope.toRemove = function( listId, listName ) {
+    listFunc.toRemove = function( listId, listName ) {
         
         if( window.confirm( "Are you sure you want to delete "+listName+" ?" ) ) {
             
@@ -41,9 +36,14 @@ var HomeCtrl = function ( $scope, $routeParams, $location, DB ) {
         
     }
     
-    $scope.toElemList = function( listId ) {
+    listFunc.toElemList = function( listId ) {
         
         $location.path( '/list/'+listId+'/elem' );
+    }
+    
+    $scope.selectElem = function( id, name ) {
+        $scope.selectItem( id, name );
+        $scope.menuToggle( actionList, id, name, listFunc );
     }
     
 
