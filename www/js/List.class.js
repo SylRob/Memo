@@ -17,9 +17,7 @@ var List = (function() {
     
     
     List.prototype.init = function() {
-        var _this = this;
-        
-        
+        var _this = this;        
     }
     
     

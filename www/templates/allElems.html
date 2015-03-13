@@ -1,13 +1,19 @@
 <h1>{{ListInfo.name}} elem List</h1></h1>
-        
+
+<button class="burronv1" ng-click="goToCreateElem()">Add a new element!</button>
+
 <div id="elemsBlock">
     <!--Body content-->   
     
-    <ul ng-repeat="elemData in elemsData">
+    <ul class="tableList" ng-repeat="elemData in elemsData">
       
-      <li><input type="checkbox" ng-click="setDone(elemData.infos.id)" ng-model="elemData.done" />{{elemData.infos.name}} <a href="" ng-click="toRemove(elemData.infos.id, elemData.infos.name)">X</a> <a href="" ng-click="toEdit(elemData.infos.id)">E</a></li>
+        <li ng-class="{ 'slectedElem': elemData.infos.id == selectedIndex }" select-items>
+            <div class="elemStatus" ng-class="{done: elemData.done}">
+                <input class="tableCell" type="checkbox" ng-click="setDone(elemData.infos.id)" ng-model="elemData.done" />
+            </div>
+            <div class="tal" ng-click="selectElem( elemData.infos.id, elemData.infos.name )">{{elemData.infos.name}} </div>
+            <!--a href="" ng-click="toRemove(elemData.infos.id, elemData.infos.name)">X</a> <a href="" ng-click="toEdit(elemData.infos.id)">E</a-->
+        </li>
       
     </ul>
-    
-    <button ng-click="goToCreateElem()">Create a new elem!</button>
 </div>

@@ -13,11 +13,13 @@
         <input type="text" id="to" name="to"  ng-model="to" value="" />
     </p>
     
-    <div ng-if="edit == true">
-        <button ng-click="elemSave(false)">Update</button>
-    </div>
-    <div ng-if="edit == false">
-        <button ng-click="elemSave(false)">Create</button>
+    <div class="buttonPlace">
+        <div ng-if="edit == true">
+            <button class="burronv1" ng-click="elemSave(false)">Update</button>
+        </div>
+        <div ng-if="edit == false">
+            <button class="burronv1" ng-click="elemSave(false)">Create</button>
+        </div>
     </div>
     
 </div>

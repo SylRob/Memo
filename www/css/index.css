@@ -41,11 +41,12 @@ body {
 
 
 #wraper {
-    background-color: #397EE8;
+    background-color: #59b6fa;
     height: 99.99vh;
     width: 100%;
     position: relative;
     overflow: hidden;
+    display: table;
 }
 
 .secondColor {
@@ -56,6 +57,18 @@ body {
     display: none;
 }
 
+.burronv1 {
+    font-weight: lighter;
+    background-color: #2b597a;
+    border: 1px solid #FFFFFF;
+    padding: 2%;
+    color: #FFFFFF;
+}
+
+.tal {
+    text-align: left;
+}
+
 #wraper h1 {
     text-align: center;
     font-size: 3em;
@@ -64,30 +77,73 @@ body {
 }
 
 #pageWrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: table-cell;
+    vertical-align: top;
     z-index: 2;
-    width: 100%;
+    width: 98%;
     height: 100%;
     overflow: auto;
+    transition-property: width;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+
+#pageWrapper.active {
+    width: 92%;
+    transition-property: width;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out; 
+    transition-timing-function: ease-in-out; 
 }
 
 .page-view {
-    padding: 2%;
+    padding: 2% 2% 2% 0;
 }
 
 #sideMenu {
-    width: 11%;
-    position: relative;
-    z-index: 15;
-    padding: 2%;
-    overflow: hidden;
-    height: 8%;
-    background-color: #2b597a;
+    display: table-cell;
+    /*transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out; 
+    transition-timing-function: ease-in-out;*/
+}
+
+#sideMenu div img {
+}
+
+#sideMenu.active {
+    /*height: 98vh !important;
+    transition-property: height;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;*/
 }
 
 #menuWrapper {
+    width: 12%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    vertical-align: top;
+    z-index: 15;
+    padding: 0.5em;
+    overflow: hidden;
+    background-color: #2b597a;
+    height: 7%;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out; 
+    transition-timing-function: ease-in-out;
+}
+
+#menuWrapper.active {
+    height: 100%;
+    transition-property: height;
+    transition-duration: .5s;
+    -webkit-transition-timing-function: ease-in-out; 
+    transition-timing-function: ease-in-out;
+}
+
+#menuContent {
     display: table;
     width: 80%;
     height: 96vh;
@@ -95,9 +151,27 @@ body {
     cursor: pointer;
 }
 
-#menuWrapper > div:first-child {
+#menuContent > div:first-child {
     display: table-row;
-    height: 6%;
+}
+
+#secondMenu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    background-color: #2b597a;
+    width: 26%;
+}
+
+#secondMenu > div {
+    display: inline-block;
+    width: 20%;
+    padding: 15%;
+}
+
+#secondMenu > div > img {
+    width: 96%;
 }
 
 #bottomPos {
@@ -105,35 +179,45 @@ body {
     vertical-align: bottom;
 }
 
-#bottomPos > div {
-    margin-top: 25%;
+#bottomPos .btn_block {
+    margin-top: 50%;
+    padding-bottom: 100%;
+    position: relative;
 }
 
-#sideMenu  div img {
+#bottomPos .btn_block > img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
 }
 
 #btnFixe_back {
     margin-bottom: 150%;
 }
 
-#listBlock li {
+.tableList li {
     text-align: center;
     font-size: 2em;
     line-height: 2em;
     border: 1px solid #FFFFFF;
     display: table;
     width: 100%;
+    background-color: #72c1fb;
 }
 
-#listBlock li > div {
+.tableList li > div {
     display: table-cell;
     vertical-align: middle;
-    width: 81%;
     padding: 2%;
 }
 
-#listBlock li > a {
+.tableList li.slectedElem {
+    background-color: #2B597A;
+}
+
+.tableList li > a {
     display: table-cell;
     vertical-align: middle;
     width: 9.82%;
@@ -141,21 +225,81 @@ body {
     text-align: center;
     border-left: 1px solid #FFFFFF;
     padding: 2%;
+    min-width: 70px;
 }
 
-#listBlock li > a > img {
+.tableList li > .elemStatus {
+    padding: 0;
+    width: 13.5%;
+    border-right: 1px solid #FFFFFF;
+    min-width: 70px;
+}
+
+.tableList li > .elemStatus input {
+    background: url('../img/ico_v_blue.svg') center top no-repeat;
+    background-size: auto 80%;
+    width: 100%;
+    height: 100%;
+}
+
+.tableList li > .elemStatus input:checked {
+    background: url('../img/ico_v_white.svg') center top no-repeat;
+    background-size: auto 80%;
+}
+
+.tableList li > .elemStatus.done {
+    background: #71b800;
+}
+
+.tableList li > a > img {
     width: 30%;
     display: inline-block;
     vertical-align: middle;
 }
 
-#listBlock li .itemDesc {
+.tableList li .itemDesc {
     width: 100%;
 }
 
+#newList p {
+    margin-bottom: 5%;
+}
+
+#newList p label {
+    padding-bottom: 10px;
+    display: block;
+    font-size: 1.5rem;
+}
+
+#newList p input[type="text"], #newList p textarea {
+    width: 100%;
+    height: 2em;
+    border: none;
+}
+
+#newList p textarea {
+    height: 10em;
+}
+
+.buttonPlace {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.buttonPlace > button {
+    margin-left: 4%;
+}
+
+.buttonPlace > button:first-child {
+    margin-left: 0;
+}
 
 
-
+@media only screen and (max-height : 640px) {
+    #menuWrapper {
+        height: 5%;
+    }
+}
 
 
 

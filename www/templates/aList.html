@@ -4,14 +4,14 @@
     
     <p><label for="listName">Name</label><input type="text" id="listName" name="listName" ng-model="name" value="" /></p>
     
-    <p><label for="description">Description</label><input type="text" id="description" name="description"  ng-model="description" value="" /></p>
+    <p><label for="description">Description</label>
+        <textarea id="description" name="description" ng-model="description"></textarea>
+    </p>
     
-    <div ng-if="edit == true">
-        <button ng-click="listSave(false)">Update</button>
+    <div class="buttonPlace">
+        <button ng-if="edit == true" class="burronv1" ng-click="listSave(false)">Update</button>
+        <button ng-if="edit == false" class="burronv1" ng-click="listSave(false)">Create</button>
+        <button class="burronv1" ng-click="listSave(true)">Save and add an element</button>
     </div>
-    <div ng-if="edit == false">
-        <button ng-click="listSave(false)">Create</button>
-    </div>
-    <button ng-click="listSave(true)">Save and add an element</button>
     
 </div>

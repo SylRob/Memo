@@ -1,11 +1,18 @@
 
 <div id="menuWrapper">
-<div id="btn_menu" ng-click="menuToggle()"><img src="img/ico_menu.svg" alt="Menu" /></div>
-<div id="bottomPos">
-    <div id="btnFixe_back" ng-click="menuToggle()"><img src="img/ico_back.svg" alt="Back" /></div>
-    <div id="btn_edit" ng-click="menuEdit()"><img src="img/ico_edit.svg" alt="Edit" /></div>
-    <div id="btn_add" ng-click="menuAdd()"><img src="img/ico_add.svg" alt="Add" /></div>
-    <div id="btn_remove" ng-click="menuRemove()"><img src="img/ico_remove.svg" alt="Remove" /></div>
-    <div id="btnFixe_option" ng-click="menuOption()"><img src="img/ico_option.svg" alt="Option" /></div>
+    <div id="menuContent">
+    <div id="btn_menu" ng-click="menuToggle()"><img src="img/ico_menu.svg" alt="Menu" /></div>
+    <div id="bottomPos">
+        <div class="btn_block" id="btnFixe_back" ><img ng-click="menuClose()" src="img/ico_close.svg" alt="Back" /></div>
+        <div class="btn_block" id="btn_edit"><img ng-click="menuEdit()" src="img/ico_edit.svg" alt="Edit" /></div>
+        <div class="btn_block" id="btn_add"><img ng-click="menuAdd()" src="img/ico_add.svg" alt="Add" /></div>
+        <div class="btn_block" id="btn_remove"><img ng-click="menuRemove()" src="img/ico_remove.svg" alt="Remove" /></div>
+        <div class="btn_block" id="btnFixe_option"><img ng-click="menuOption()" src="img/ico_option.svg" alt="Option" /></div>
+    </div>
+    </div>
 </div>
-</div>
+
+<div id="secondMenu"><!--
+    --><div><img ng-click="menuPrevious()" src="img/ico_historyBack.svg" alt="Back" /></div><!--
+    --><div><img ng-click="menuHome()" src="img/ico_home.svg" alt="Home" /></div><!--
+--></div>

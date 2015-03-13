@@ -86,7 +86,7 @@ select,
 input,
 button,
 textarea {
-	font:99% arial,helvetica,clean,sans-serif;
+	font:99% 'Lato', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
 /**
@@ -105,7 +105,7 @@ code,
 kbd,
 samp,
 tt {
-	font-family:monospace;
+	font-family:'Lato', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 	*font-size:108%;
 	line-height:150%;
 }

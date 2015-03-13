@@ -5,32 +5,46 @@ app.directive( 'menuDirective', function () {
         var h, paddT;
         
         scope.menuActive = false;
+        scope.elemActive = -1;
+        scope.isAnimated = false;
         
         //height setting on resize
         $(window).resize(function() {
             
-            reasign();
+            resizePageWrapper();
             
-            $('#sideMenu').height( h );
+        })
+        
+        scope.$on('$routeChangeStart', function(next, current) { 
             
-        }).resize();
+            if( scope.menuActive ) {
+                scope.menuToggle();
+            }
+            
+        });
         
         
         scope.menuToggle = function( elems, id, name, listFunc ) {
             
+            scope.elemActive = id || -1;
+            
             if( !scope.menuActive ) {
-                $('#bottomPos > div[id^="btn_"]').hide();
-                for(elem in elems) { $("#btn_"+elems[elem]).show(); }
+                $('#bottomPos div[id^="btn_"] img').hide();
+                for(elem in elems) { $("#btn_"+elems[elem]+" img").show(); }
+                
+                $('#pageWrapper').addClass('active');
+                $('#menuWrapper').addClass('active');
+                resizePageWrapper();
+            
+            } else {
+                
+                $('#pageWrapper').removeClass('active');
+                $('#menuWrapper').removeClass('active');
+                resizePageWrapper();
+                
             }
             
             scope.menuActive = !scope.menuActive;
-            reasign();
-            
-            var speed = 300;
-            
-            $("#sideMenu").animate({
-                height  : h
-            }, speed);
             
             
             if ( id !== undefined ) {
@@ -38,22 +52,45 @@ app.directive( 'menuDirective', function () {
                     listFunc.toEdit( id );
                 }
                 scope.menuAdd = function() {
-                    listFunc.toElemList( id );
+                    listFunc.goToCreateElem( id );
                 }
                 scope.menuRemove = function() {
-                    listFunc.toRemove( id );
+                    if( window.confirm( "Are you sure you want to delete "+name+" ?" ) ) {
+                        listFunc.toRemove( id, name );
+                        scope.menuToggle();
+                    }
+                }
+                scope.menuClose = function() {
+                    listFunc.unselectElem();
+                    scope.menuToggle();
                 }
             }
             
             
         } //scope.menuToggle
         
+        scope.menuPrevious = function() {
+            window.history.back();
+        }
         
-        function reasign() {
+        scope.menuHome = function() {
+            window.location.href="index.html";
+        }
+        
+        $('#pageWrapper').width(Math.round($(window).width()*98/100));
+        
+        function resizePageWrapper() {
             
-            if ( scope.menuActive ) { h = $(window).height(); }
-            else { h = $('#btn_menu img').height(); }
+            if( $('#pageWrapper').hasClass('active') ) {
+                var newWidth = $(window).width() - $('#menuWrapper').outerWidth();
+            } else {
+                var newWidth = Math.round($(window).width()*98/100);
+            }
             
+            
+            $('#pageWrapper').stop().animate({
+                width : newWidth
+            }, 300);
         }
     }
     
@@ -78,9 +115,10 @@ app.directive( 'menuDirective', function () {
                 
             }
             
+            
             scope.listActivate = !scope.listActivate;
             
-        }        
+        }
         
     }
 
